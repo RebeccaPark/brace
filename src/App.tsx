@@ -1,26 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App() {
+  useEffect(() => {
+    async function fetchRequest() {
+      const PROXY_URL = 'https://cors-anywhere.herokuapp.com'
+      const SEARCH_URL = 'https://api.yelp.com/v3/businesses/search?location=nyc';
+      const API_KEY = '6NW29aowuDui7oth0EpBZqYXtVxMfMQKvel4HpQO4FmsyC_5zYlg2GDZym7HXaUoM7xdJC-LVTXATNs9wRoh1ZVaNNa_bBFJpAvDc8xTsByCoq_VGQL3iR5wBjoVXXYx';
+      const bearer = `Bearer ${API_KEY}`;
+
+      const fetchData = await fetch(`${PROXY_URL}/${SEARCH_URL}`, {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+          'Authorization': bearer,
+        },
+      });
+      const data = await fetchData.json();
+      console.log(data);
+    }
+
+    fetchRequest();
+  }, []);
+
+return (
+  <div>Hiiii</div>
+)
 }
 
 export default App;
