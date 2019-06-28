@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 
 import { Business } from './Business';
+import { Button } from './Button';
 
 interface Business {
   id: string,
@@ -37,7 +38,7 @@ function App() {
 
   return (
     <div className="app">
-      { businesses.length === 0 && 'Click the button to get businesses in NYC!'}
+      { businesses.length === 0 && <h2>Click to get information about businesses in NYC!</h2>}
       <div className="list">
       { businesses.length > 0 && businesses.map((business: Business) => {
         return (
@@ -48,12 +49,10 @@ function App() {
         )})
       }
       </div>
-      <button onClick={onButtonClick}>
-        { businesses.length > 0 && 'Click for more!' }
-        { businesses.length === 0 && 'Click Me!' }
-      </button>
+      <Button onClick={onButtonClick}
+              text={businesses.length === 0 ? 'Click Me!' : 'Click for more!'} />
     </div>
-  )
+  );
 }
 
 export default App;
