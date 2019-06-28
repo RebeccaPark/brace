@@ -1,8 +1,18 @@
-import React, { useEffect } from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
+import { Business } from './Business';
+
+interface Business {
+  id: string,
+  alias: string,
+  name: string,
+  image_url: string,
+}
+
 function App() {
+  const [businesses, setBusinesses] = useState([]);
+
   useEffect(() => {
     async function fetchRequest() {
       const PROXY_URL = 'https://cors-anywhere.herokuapp.com'
@@ -18,15 +28,25 @@ function App() {
         },
       });
       const data = await fetchData.json();
+      setBusinesses(data.businesses);
       console.log(data);
     }
-
     fetchRequest();
   }, []);
 
-return (
-  <div>Hiiii</div>
-)
+  return (
+    <React.Fragment>
+      { businesses.map((business: Business) => {
+        return (
+          <Business 
+            name={business.name}
+            imageUrl={business.image_url}
+          />
+        )
+        })
+      }
+    </React.Fragment>
+  )
 }
 
 export default App;
