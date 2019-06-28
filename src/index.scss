@@ -1,3 +1,13 @@
+@import './styles/font.scss';
+@import './styles/color.scss';
+
+html, body {
+  width: 100%;
+  height: 100%;
+  color: $gray-darkest;
+  font-size: $font-md;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

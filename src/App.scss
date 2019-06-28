@@ -1,0 +1,19 @@
+@import './styles/font.scss';
+
+.app {
+  width: fit-content;
+  margin: 70px auto;
+
+  .app__header {
+    padding-bottom: 20px;
+    margin-bottom: 50px;
+  }
+
+  .app__title {
+    font-size: $font-xlg;
+  }
+
+  .app__subtitle {
+    font-size: $font-xsm;
+  }
+}

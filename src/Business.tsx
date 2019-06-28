@@ -1,10 +1,15 @@
 import React from 'react';
+import './Business.scss';
 
-export function Business(props: {name: string, imageUrl: string}) {
-  return(
+export function Business(props: { name: string, imageUrl: string }) {
+  return (
     <div className="business">
-      {props.name}
-      <img src={props.imageUrl} />
+      <div
+        className="business__image"
+        style={{ backgroundImage: `url(${props.imageUrl})` }} />
+      <div className="business__name">
+        {props.name}
+      </div>
     </div>
   )
 };

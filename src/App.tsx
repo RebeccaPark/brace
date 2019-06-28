@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './App.css';
+import './App.scss';
 
 import { Business } from './Business';
 import { Button } from './Button';
@@ -38,6 +38,10 @@ function App() {
 
   return (
     <div className="app">
+      <div className="app__header">
+        <div className="app__title">Eat, Look, Feel NYC</div>
+        <div className="app__subtitle">Powered by Yelp Fusion</div>
+      </div>
       { businesses.length === 0 && <h2>Click to get information about businesses in NYC!</h2>}
       <div className="list">
       { businesses.length > 0 && businesses.map((business: Business) => {
