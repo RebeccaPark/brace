@@ -1,0 +1,22 @@
+@import './styles/font.scss';
+@import './styles/color.scss';
+
+.button {
+  color: $color-primary-accent;
+  border: 1px solid $color-primary-accent;
+  padding: 8px;
+  background-color: $color-primary-background;
+  
+  font-size: $font-sm;
+  outline: none;
+  box-shadow: 3px 3px 0px -1px rgba($color-primary-accent,1);
+
+  &:hover {
+    cursor: pointer;
+    background-color: white;
+  }
+
+  &:active {
+    box-shadow: 4px 4px 0px 0px rgba($color-primary-accent,1);
+  }
+}

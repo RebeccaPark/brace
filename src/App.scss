@@ -2,7 +2,7 @@
 
 .app {
   width: fit-content;
-  margin: 70px auto;
+  margin: 70px;
 
   .app__header {
     padding-bottom: 20px;
@@ -17,7 +17,10 @@
     font-size: $font-xsm;
   }
 
-  .app__prompt {
-    
+  .app__button {
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
   }
+
 }

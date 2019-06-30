@@ -1,7 +1,13 @@
 import React from 'react';
 
+import './Button.scss';
+
 export function Button(props: {onClick(): void, text: string}) {
   return(
-    <button onClick={props.onClick}>{props.text}</button>
+    <button 
+      className="button"
+      onClick={props.onClick}>
+      {props.text}
+    </button>
   )
 }
