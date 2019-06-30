@@ -15,15 +15,17 @@ interface Business {
 }
 
 function App() {
-  const [businesses, setBusinesses] = useState([]);
+  const [businesses, setBusinesses] = useState<Business[]>([]);
+  const [pageNumber, setPageNumber] = useState(0);
 
   async function fetchRequest() {
     const PROXY_URL = 'https://cors-anywhere.herokuapp.com'
-    const SEARCH_URL = 'https://api.yelp.com/v3/businesses/search?location=nyc';
+    const SEARCH_URL = 'https://api.yelp.com/v3/businesses/search?location=nyc&limit=10';
     const API_KEY = '6NW29aowuDui7oth0EpBZqYXtVxMfMQKvel4HpQO4FmsyC_5zYlg2GDZym7HXaUoM7xdJC-LVTXATNs9wRoh1ZVaNNa_bBFJpAvDc8xTsByCoq_VGQL3iR5wBjoVXXYx';
     const bearer = `Bearer ${API_KEY}`;
+    const itemsPerPage = 10;
 
-    const fetchData = await fetch(`${PROXY_URL}/${SEARCH_URL}`, {
+    const fetchData = await fetch(`${PROXY_URL}/${SEARCH_URL}&offset=${pageNumber*itemsPerPage}`, {
       method: 'GET',
       mode: 'cors',
       headers: {
@@ -31,7 +33,8 @@ function App() {
       },
     });
     const data = await fetchData.json();
-    setBusinesses(data.businesses);
+    setBusinesses([...businesses, ...data.businesses]);
+    setPageNumber(pageNumber + itemsPerPage);
     console.log(data);
   }
 
