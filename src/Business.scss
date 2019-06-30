@@ -3,7 +3,8 @@
 
 .business {
   display: flex;
-  margin-bottom: 20px;
+  width: 600px;
+  margin-bottom: 40px;
   
   .business__image {
     width: 150px;
@@ -17,19 +18,43 @@
 
   .business__info {
     margin-left: 10px;
+    flex: 1;
+    position: relative;
+    border-bottom: 1px solid rgba($color-primary-accent, 0.4);
   }
 
   .business__header {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+  }
+
+  .business__name {
+    color: $color-primary-accent;
+    font-weight: 600;
+    margin-bottom: 5px;
   }
 
   .business__subheader {
-    display: flex;
     font-size: $font-xsm;
-    color: $gray-dark;
+    color: $gray-darkest;
   }
 
   .business__address {
     font-size: $font-sm;
+  }
+
+  .business__footer {
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+    font-size: $font-xsm;
+
+    display: flex;
+    align-items: center;
+  }
+
+  .business__rating {
+    margin-right: 5px;
+    background-color: rgba($color-primary-background, 0.6);
+    padding: 3px;
   }
 }

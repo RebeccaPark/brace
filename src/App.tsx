@@ -12,6 +12,7 @@ interface Business {
   location: {display_address: string},
   price: string,
   rating: number,
+  categories: {title: string}[],
 }
 
 function App() {
@@ -62,6 +63,7 @@ function App() {
             address={business.location.display_address}
             price={business.price}
             rating={business.rating}
+            categories={business.categories}
           />
         )})
       }
