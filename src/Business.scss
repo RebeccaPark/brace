@@ -1,13 +1,10 @@
 @import './styles/font.scss';
+@import './styles/color.scss';
 
 .business {
   display: flex;
   margin-bottom: 20px;
   
-  .business__name {
-    margin-left: 10px;
-  }
-
   .business__image {
     width: 150px;
     height: 150px;
@@ -16,5 +13,23 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+  }
+
+  .business__info {
+    margin-left: 10px;
+  }
+
+  .business__header {
+    margin-bottom: 10px;
+  }
+
+  .business__subheader {
+    display: flex;
+    font-size: $font-xsm;
+    color: $gray-dark;
+  }
+
+  .business__address {
+    font-size: $font-sm;
   }
 }

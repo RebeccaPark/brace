@@ -9,6 +9,9 @@ interface Business {
   alias: string,
   name: string,
   image_url: string,
+  location: {display_address: string},
+  price: string,
+  rating: number,
 }
 
 function App() {
@@ -42,13 +45,20 @@ function App() {
         <div className="app__title">Eat, Look, Feel NYC</div>
         <div className="app__subtitle">Powered by Yelp Fusion</div>
       </div>
-      { businesses.length === 0 && <h2>Click to get information about businesses in NYC!</h2>}
+      { businesses.length === 0 && 
+        <div className="app__prompt">
+          Click to get information about businesses in NYC!
+        </div>
+      }
       <div className="list">
       { businesses.length > 0 && businesses.map((business: Business) => {
         return (
           <Business 
             name={business.name}
             imageUrl={business.image_url}
+            address={business.location.display_address}
+            price={business.price}
+            rating={business.rating}
           />
         )})
       }
