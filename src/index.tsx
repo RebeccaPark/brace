@@ -9,7 +9,7 @@ import * as serviceWorker from './serviceWorker';
 const routing = (
   <Router>
     <Route exact path="/" component={App} />
-    <Route path="/business" component={Details} />
+    <Route path="/business/:businessId" component={Details} />
   </Router>
 );
 

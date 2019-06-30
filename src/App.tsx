@@ -3,6 +3,7 @@ import './App.scss';
 
 import { Business } from './Business';
 import { Button } from './Button';
+import { fetchBusinesses } from './fetch';
 
 interface Business {
   id: string,
@@ -20,27 +21,17 @@ function App() {
   const [pageNumber, setPageNumber] = useState(0);
   const itemsPerPage = 10;
 
-  async function fetchRequest() {
-    const PROXY_URL = 'https://cors-anywhere.herokuapp.com'
-    const SEARCH_URL = 'https://api.yelp.com/v3/businesses/search?location=nyc&limit=10';
-    const API_KEY = '6NW29aowuDui7oth0EpBZqYXtVxMfMQKvel4HpQO4FmsyC_5zYlg2GDZym7HXaUoM7xdJC-LVTXATNs9wRoh1ZVaNNa_bBFJpAvDc8xTsByCoq_VGQL3iR5wBjoVXXYx';
-    const bearer = `Bearer ${API_KEY}`;
-
-    const fetchData = await fetch(`${PROXY_URL}/${SEARCH_URL}&offset=${pageNumber*itemsPerPage}`, {
-      method: 'GET',
-      mode: 'cors',
-      headers: {
-        'Authorization': bearer,
-      },
-    });
+  async function getBusinesses() {
+    const fetchData = await fetchBusinesses(pageNumber, itemsPerPage);
     const data = await fetchData.json();
+
     setBusinesses([...businesses, ...data.businesses]);
     setPageNumber(pageNumber + itemsPerPage);
     console.log(data);
   }
 
   function onButtonClick() {
-    fetchRequest();
+    getBusinesses();
   }
 
   return (
@@ -57,7 +48,8 @@ function App() {
       <div className="app__list">
       { businesses.length > 0 && businesses.map((business: Business) => {
         return (
-          <Business 
+          <Business
+            id={business.id}
             name={business.name}
             imageUrl={business.image_url}
             address={business.location.display_address}
