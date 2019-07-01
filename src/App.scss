@@ -2,7 +2,8 @@
 @import './styles/color.scss';
 
 .app {
-  width: fit-content;
+  width: 700px;
+  max-width: 100%;
   margin: 70px;
 
   .app__header {
@@ -17,6 +18,10 @@
 
   .app__subtitle {
     font-size: $font-xsm;
+  }
+
+  .app__prompt {
+    text-align: center;
   }
 
   .app__button {
