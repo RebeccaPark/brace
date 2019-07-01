@@ -1,5 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { Link, Route, BrowserRouter as Router } from 'react-router-dom';
+import React from 'react';
+import {
+  Link,
+  Route,
+  BrowserRouter as Router,
+  withRouter
+} from 'react-router-dom';
 
 import './App.scss';
 
@@ -11,10 +16,7 @@ function App() {
   return (
     <Router>
       <div className="app">
-        <div className="app__header">
-          <div className="app__title">Eat, Look, Feel NYC</div>
-          <div className="app__subtitle">Powered by Yelp Fusion</div>
-        </div>
+        <Header />
         <Route exact path="/" component={Home} />
         <Route path="/list/nyc" component={BusinessList} />
         <Route path="/business/:businessId" component={Details} />
@@ -23,7 +25,20 @@ function App() {
   );
 }
 
-function Home(props: {onButtonClick: () => void}) {
+const Header = withRouter((props: {location: {pathname: string}}) => {
+  const { location } = props;
+  if (location.pathname === "/" || location.pathname === "/list/nyc") {
+  return (
+    <div className="app__header">
+      <div className="app__title">Eat, Look, Feel NYC</div>
+      <div className="app__subtitle">Powered by Yelp Fusion</div>
+    </div>
+  )
+  }
+  return null;
+});
+
+function Home(props: { onButtonClick: () => void }) {
   return (
     <div>
       <div className="app__prompt">

@@ -1,17 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Route, BrowserRouter as Router } from 'react-router-dom';
 import './index.scss';
 import App from './App';
-import { Details } from './views/Details';
 import * as serviceWorker from './serviceWorker';
-
-const routing = (
-  <Router>
-    <Route exact path="/" component={App} />
-    <Route path="/business/:businessId" component={Details} />
-  </Router>
-);
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

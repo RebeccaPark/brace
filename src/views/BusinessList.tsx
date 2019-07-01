@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
+import './BusinessList.scss';
+
 import { Business } from '../Business';
 import { Business as BusinessInterface } from '../interfaces';
 import { fetchBusinesses } from '../fetch';
 import { Button } from '../Button';
 
-export function BusinessList(props: {businesses: BusinessInterface[]}) {
+export function BusinessList() {
   const [loading, setLoading] = useState<boolean>(true);
   const [businesses, setBusinesses] = useState<BusinessInterface[]>([]);
   const [pageNumber, setPageNumber] = useState(0);
@@ -43,8 +45,10 @@ export function BusinessList(props: {businesses: BusinessInterface[]}) {
       }
       {loading && <div>Loading...</div>}
       {!loading && 
-        <Button onClick={getBusinesses}
-                text={`Click for ${itemsPerPage} more`} />
+        <div className="businessList__moreButton">
+          <Button onClick={getBusinesses}
+                  text={`Click for ${itemsPerPage} more`} />
+        </div>
       }
     </div>
   );

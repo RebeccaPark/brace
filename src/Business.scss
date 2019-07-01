@@ -3,12 +3,13 @@
 
 .business {
   display: flex;
-  width: 600px;
   margin-bottom: 40px;
   
   .business__image {
     width: 150px;
+    max-width: 30%;
     height: 150px;
+
     border-radius: 5px;
 
     background-size: cover;

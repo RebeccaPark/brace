@@ -1,5 +1,9 @@
 .businessList {
   display: flex;
   flex-direction: column;
-  align-items: center;
+
+  .businessList__moreButton {
+    width: 100%;
+    text-align: center;
+  }
 }

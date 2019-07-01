@@ -3,6 +3,7 @@
 
 html, body {
   width: 100%;
+  max-width: 100%;
   height: 100%;
   color: $gray-darkest;
   font-size: $font-md;
@@ -18,6 +19,7 @@ body {
 }
 
 #root {
+  max-width: 100%;
   display: flex;
   justify-content: center;
 }
@@ -25,4 +27,8 @@ body {
 a {
   text-decoration: none;
   color: $color-primary-accent;
+}
+
+* {
+  box-sizing: border-box;
 }
