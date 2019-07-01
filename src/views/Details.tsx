@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './Details.scss';
 
-import { fetchBusinessDetail } from '../fetch';
+import { fetchBusinessDetail, fetchBusinessReviews } from '../fetch';
 
 interface BusinessInfo {
   name: string,
-  categories: {title: string}[],
+  categories: { title: string }[],
   display_phone: string,
   is_closed: boolean,
   photos: string[],
@@ -17,7 +17,8 @@ interface BusinessInfo {
 
 export function Details(props: any) {
   const [businessInfo, setBusinessInfo] = useState<BusinessInfo>();
-  
+  const [reviews, setReviews] = useState();
+
   useEffect(() => {
     async function getBusinessDetail() {
       const response = await fetchBusinessDetail(props.match.params.businessId);
@@ -25,12 +26,22 @@ export function Details(props: any) {
       setBusinessInfo(businessDetail);
       console.log('bizdeets: ', businessDetail);
     };
+
+    async function getBusinessReviews() {
+      const response = await fetchBusinessReviews(props.match.params.businessId);
+      const businessReviews = await response.json();
+      setReviews(businessReviews.reviews);
+      console.log('reviews: ', businessReviews);
+
+    }
+
     getBusinessDetail();
+    getBusinessReviews();
   }, []);
 
-  return(
+  return (
     <div className="detail">
-      {businessInfo &&
+      {businessInfo && reviews &&
         <React.Fragment>
           <div className="detail__header">
             <div className="detail__header--left">
@@ -58,13 +69,26 @@ export function Details(props: any) {
             </div>
           </div>
           <div className="detail__photos">
-              {businessInfo.photos.map(photo => (
-                <div
-                  className="detail__photo" 
-                  style={{backgroundImage: `url(${photo})`}}>
-                </div>))}
-            </div>
-        </React.Fragment> 
+            {businessInfo.photos.map(photo => (
+              <div
+                className="detail__photo"
+                style={{ backgroundImage: `url(${photo})` }}
+                key={photo}
+              >
+              </div>))}
+          </div>
+          <div className="detail__reviews">
+            Reviews
+            {reviews.map((review: {id: string, text: string}) => (
+              <div
+                className="detail__review"
+                key={review.id}
+              >
+                {review.text}
+              </div>
+            ))}
+          </div>
+        </React.Fragment>
       }
     </div>
   )
