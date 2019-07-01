@@ -8,7 +8,7 @@ import {
 
 import './App.scss';
 
-import { Button } from './Button';
+import { Button } from './components/Button';
 import { BusinessList } from './views/BusinessList';
 import { Details } from './views/Details';
 

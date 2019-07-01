@@ -1,5 +1,3 @@
-import { METHODS } from "http";
-
 const API_KEY = '6NW29aowuDui7oth0EpBZqYXtVxMfMQKvel4HpQO4FmsyC_5zYlg2GDZym7HXaUoM7xdJC-LVTXATNs9wRoh1ZVaNNa_bBFJpAvDc8xTsByCoq_VGQL3iR5wBjoVXXYx';
 
 const PROXY_URL = 'https://cors-anywhere.herokuapp.com';

@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 
 import './BusinessList.scss';
 
-import { Business } from '../Business';
+import { Business } from '../components/Business';
 import { Business as BusinessInterface } from '../interfaces';
 import { fetchBusinesses } from '../fetch';
-import { Button } from '../Button';
+import { Button } from '../components/Button';
 
 export function BusinessList() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -33,6 +33,7 @@ export function BusinessList() {
       {businesses.length > 0 && businesses.map((business: BusinessInterface) =>
         (
           <Business
+            key={business.id}
             id={business.id}
             name={business.name}
             imageUrl={business.image_url}
