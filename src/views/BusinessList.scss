@@ -2,6 +2,18 @@
   display: flex;
   flex-direction: column;
 
+  .businessList__input {
+    border: none;
+    border-bottom: 1px solid gray;
+    width: 300px;
+    margin-bottom: 20px;
+    padding: 10px 5px;
+    
+    &:focus {
+      outline: none;
+    }
+  }
+
   .businessList__moreButton {
     width: 100%;
     text-align: center;
