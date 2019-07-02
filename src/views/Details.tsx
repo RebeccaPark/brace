@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './Details.scss';
 
-import { fetchBusinessDetail, fetchBusinessReviews } from '../fetch';
+import {
+  fetchBusinessDetail,
+  fetchBusinessReviews,
+  BusinessReview,
+} from '../api';
 
 interface BusinessInfo {
   name: string;
@@ -21,16 +25,14 @@ export function Details(props: { match: { params: { businessId: string } } }) {
 
   useEffect(() => {
     async function getBusinessDetail() {
-      const response = await fetchBusinessDetail(props.match.params.businessId);
-      const businessDetail = await response.json();
+      const businessDetail = await fetchBusinessDetail(props.match.params.businessId);
       setBusinessInfo(businessDetail);
     }
 
     async function getBusinessReviews() {
-      const response = await fetchBusinessReviews(
+      const businessReviews = await fetchBusinessReviews(
         props.match.params.businessId,
       );
-      const businessReviews = await response.json();
       setReviews(businessReviews.reviews);
     }
 
@@ -78,7 +80,7 @@ export function Details(props: { match: { params: { businessId: string } } }) {
           </div>
           <div className="detail__reviews">
             Reviews
-            {reviews.map((review: { id: string; text: string }) => (
+            {reviews.map((review: BusinessReview) => (
               <div className="detail__review" key={review.id}>
                 {review.text}
               </div>

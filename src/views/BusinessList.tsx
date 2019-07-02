@@ -3,24 +3,20 @@ import React, { useState, useEffect } from 'react';
 import './BusinessList.scss';
 
 import { Business } from '../components/Business';
-import { Business as BusinessInterface } from '../interfaces';
-import { fetchBusinesses } from '../fetch';
+import { Business as BusinessT, fetchBusinesses } from '../api';
 import { Button } from '../components/Button';
 
 export function BusinessList() {
   const [loading, setLoading] = useState<boolean>(true);
-  const [businesses, setBusinesses] = useState<BusinessInterface[]>([]);
-  const [filteredBusinesses, setFilteredBusinesses] = useState<
-    BusinessInterface[]
-  >([]);
+  const [businesses, setBusinesses] = useState<BusinessT[]>([]);
+  const [filteredBusinesses, setFilteredBusinesses] = useState<BusinessT[]>([]);
   const [inputValue, setInputValue] = useState<string>('');
   const [pageNumber, setPageNumber] = useState(0);
   const itemsPerPage = 10;
 
   async function getBusinesses() {
     setLoading(true);
-    const fetchData = await fetchBusinesses(pageNumber, itemsPerPage);
-    const data = await fetchData.json();
+    const data = await fetchBusinesses(pageNumber, itemsPerPage);
 
     setBusinesses([...businesses, ...data.businesses]);
     setFilteredBusinesses([...businesses, ...data.businesses]);
@@ -40,7 +36,7 @@ export function BusinessList() {
     let matchingBusinesses = businesses;
 
     if (compareValue || compareValue.length > 0) {
-      matchingBusinesses = businesses.filter((business: BusinessInterface) =>
+      matchingBusinesses = businesses.filter((business: BusinessT) =>
         business.name.toLowerCase().includes(compareValue),
       );
     }
@@ -58,7 +54,7 @@ export function BusinessList() {
         />
       )}
       {filteredBusinesses.length > 0 &&
-        filteredBusinesses.map((business: BusinessInterface) => (
+        filteredBusinesses.map((business: BusinessT) => (
           <Business
             key={business.id}
             id={business.id}
